@@ -2,7 +2,6 @@ import asyncio
 import logging
 import time
 from contextlib import asynccontextmanager
-from crypt import methods
 
 from app.db.database import get_db
 from app.db.models import Message
