@@ -2,10 +2,9 @@ groups:
   - name: fastapi_alerts
     rules:
       - alert: HighRequestLatency
-        expr: histogram_quantile(0.90, rate(fastapi_request_latency_seconds_bucket[1m])) > 1
+        expr: histogram_quantile(0.90, rate(http_request_duration_seconds_bucket[1m])) > 1
         for: 1m
         labels:
           severity: critical
         annotations:
-          summary: "Высокая задержка на эндпоинте {{ $labels.endpoint }}"
-          description: "90-й перцентиль времени ответа для {{ $labels.endpoint }} превысил 1 секунду."
+          summary: "Высокая задержка на эндпоинте {{ $labels.handler }}"

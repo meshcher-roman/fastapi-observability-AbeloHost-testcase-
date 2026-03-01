@@ -76,3 +76,10 @@ def test_get_nonexistent_message():
     assert response.json() == {"detail": "Message is not found"}
 
     app.dependency_overrides.clear()
+
+
+def test_metrics_endpoint():
+    """Integration Test: Checking Prometheus Metrics Response"""
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    assert "http_requests_total" in response.text
